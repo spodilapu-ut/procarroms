@@ -13,17 +13,20 @@
 
   <div class="field">
     <%= form.label :team_one_id %>
-    <%= form.text_field :team_one_id %>
+    <!--<%= form.text_field :team_one_id %>-->
+    <%= form.collection_select :team_one_id, Team.all, :id, :name %>
   </div>
 
   <div class="field">
     <%= form.label :team_two_id %>
-    <%= form.text_field :team_two_id %>
+    <!--<%= form.text_field :team_two_id %>-->
+    <%= form.collection_select :team_two_id, Team.all, :id, :name %>
   </div>
 
   <div class="field">
     <%= form.label :toss_id %>
-    <%= form.text_field :toss_id %>
+    <!--<%= form.text_field :toss_id %>-->
+    <%= form.collection_select :toss_id, Team.all, :id, :name %>
   </div>
 
   <div class="actions">

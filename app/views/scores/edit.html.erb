@@ -2,5 +2,5 @@
 
 <%= render 'form', score: @score %>
 
-<%= link_to 'Show', @score %> |
-<%= link_to 'Back', scores_path %>
+<%= link_to 'Show', match_score_path(@match, @score) %> |
+<%= link_to 'Back', match_scores_path %>

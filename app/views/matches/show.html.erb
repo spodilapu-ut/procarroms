@@ -2,17 +2,17 @@
 
 <p>
   <strong>Team one:</strong>
-  <%= @match.team_one %>
+  <%= @match.team_one.name %>
 </p>
 
 <p>
   <strong>Team two:</strong>
-  <%= @match.team_two %>
+  <%= @match.team_two.name %>
 </p>
 
 <p>
   <strong>Toss:</strong>
-  <%= @match.toss %>
+  <%= @match.toss.name %>
 </p>
 
 <%= link_to 'Edit', edit_match_path(@match) %> |

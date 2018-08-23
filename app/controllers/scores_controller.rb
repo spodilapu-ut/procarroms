@@ -17,10 +17,14 @@ class ScoresController < ApplicationController
 
   # GET /scores/new
   def new
-    # @score = Score.new
+    #@score = Score.new
     @old_score = @match.scores.last
     @score = @match.scores.build
-    @new_set = @old_score.set + 1;
+    if @old_score.present?
+      @new_set = @old_score.set + 1;
+    else
+      @new_set = 1
+    end 
   end
 
   # GET /scores/1/edit
@@ -31,17 +35,18 @@ class ScoresController < ApplicationController
   # POST /scores.json
   def create
     @score = @match.scores.build(score_params)
-
+    @total = Score.where(match_id: @score.match_id).where(team_id: @score.team_id).sum(:score)
+    
     respond_to do |format|
-      if @score.save
-        format.html { redirect_to match_score_path(@match, @score), notice: 'Score was successfully created.' }
-        format.json { render :show, status: :created, location: @score }
-      else
-        format.html { render :new }
-        format.json { render json: @score.errors, status: :unprocessable_entity }
-      end
+    if @score.save
+      format.html { redirect_to match_score_path(@match, @score), notice: 'Score was successfully created.' }
+      format.json { render :show, status: :created, location: @score }
+    else
+      format.html { render :new }
+      format.json { render json: @score.errors, status: :unprocessable_entity }
     end
   end
+end
 
   # PATCH/PUT /scores/1
   # PATCH/PUT /scores/1.json
