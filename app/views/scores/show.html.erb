@@ -1,11 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Match:</strong>
-  <%= @score.match %>
-</p>
-
-<p>
   <strong>Set:</strong>
   <%= @score.set %>
 </p>
@@ -17,8 +12,8 @@
 
 <p>
   <strong>Team:</strong>
-  <%= @score.team %>
+  <%= @score.team.name %>
 </p>
 
-<%= link_to 'Edit', edit_score_path(@score) %> |
-<%= link_to 'Back', scores_path %>
+<%= link_to 'Edit', edit_match_score_path(@match, @score) %> |
+<%= link_to 'Back', match_scores_path %>

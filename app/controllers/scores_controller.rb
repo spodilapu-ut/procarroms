@@ -1,10 +1,13 @@
 class ScoresController < ApplicationController
+  before_action :set_match
   before_action :set_score, only: [:show, :edit, :update, :destroy]
 
   # GET /scores
   # GET /scores.json
   def index
-    @scores = Score.where("match_id = ?", params[:match_id])
+    # @scores = Score.where("match_id = ?", params[:match_id])
+    @scores = @match.scores
+    # puts @scores
   end
 
   # GET /scores/1
@@ -14,7 +17,10 @@ class ScoresController < ApplicationController
 
   # GET /scores/new
   def new
-    @score = Score.new
+    # @score = Score.new
+    @old_score = @match.scores.last
+    @score = @match.scores.build
+    @new_set = @old_score.set + 1;
   end
 
   # GET /scores/1/edit
@@ -24,11 +30,11 @@ class ScoresController < ApplicationController
   # POST /scores
   # POST /scores.json
   def create
-    @score = Score.new(score_params)
+    @score = @match.scores.build(score_params)
 
     respond_to do |format|
       if @score.save
-        format.html { redirect_to @score, notice: 'Score was successfully created.' }
+        format.html { redirect_to match_score_path(@match, @score), notice: 'Score was successfully created.' }
         format.json { render :show, status: :created, location: @score }
       else
         format.html { render :new }
@@ -42,7 +48,7 @@ class ScoresController < ApplicationController
   def update
     respond_to do |format|
       if @score.update(score_params)
-        format.html { redirect_to @score, notice: 'Score was successfully updated.' }
+        format.html { redirect_to match_scores_path(@match, @score), notice: 'Score was successfully updated.' }
         format.json { render :show, status: :ok, location: @score }
       else
         format.html { render :edit }
@@ -56,7 +62,7 @@ class ScoresController < ApplicationController
   def destroy
     @score.destroy
     respond_to do |format|
-      format.html { redirect_to scores_url, notice: 'Score was successfully destroyed.' }
+      format.html { redirect_to match_scores_url(@match), notice: 'Score was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -64,11 +70,15 @@ class ScoresController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_score
-      @score = Score.find(params[:id])
+      @score = @match.scores.find(params[:id])
+    end
+
+    def set_match
+      @match = Match.find(params[:match_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def score_params
-      params.require(:score).permit(:match_id, :set, :score, :team_id)
+      params.require(:score).permit(:set, :score, :team_id)
     end
 end

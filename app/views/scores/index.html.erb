@@ -2,7 +2,7 @@
 
 <h1>Scores</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Set</th>
@@ -18,7 +18,9 @@
         <td><%= score.set %></td>
         <td><%= score.score %></td>
         <td><%= score.team.name %></td>
-
+        <td><%= link_to 'Show', match_score_path(@match, score) %></td>
+        <td><%= link_to 'Edit', edit_match_score_path(@match, score) %></td>
+        <td><%= link_to 'Destroy', match_score_path(@match, score), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Score', new_match_score_path %>
+<%= link_to 'New Score', new_match_score_path(@match) %>
