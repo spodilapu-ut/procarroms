@@ -1,14 +1,29 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Matches</h1>
 
 <table>
   <thead>
     <tr>
+      <th><h1>Matches</h1></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="padding-right: 50px;"><%= link_to 'New Match', new_match_path %></td>
+      <td style="padding-right: 50px;"><%= link_to 'View Teams', teams_path %></td>
+      <td style="padding-right: 50px;"><%= link_to 'View Users', users_path %></td>
+    </tr>
+  </tbody>
+</table>
+
+
+<table class="table">
+  <thead class="thead-light">
+    <tr>
       <th>Team one</th>
       <th>Team two</th>
       <th>Toss</th>
-      <th colspan="3"></th>
+      <th colspan="5"></th>
     </tr>
   </thead>
 
@@ -21,11 +36,10 @@
         <td><%= link_to 'Show', match %></td>
         <td><%= link_to 'Edit', edit_match_path(match) %></td>
         <td><%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'View Score', match_scores_path(match) %></td> 
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Match', new_match_path %>

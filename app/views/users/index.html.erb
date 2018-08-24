@@ -1,14 +1,26 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Users</h1>
-
 <table>
   <thead>
+    <tr>
+      <th><h1>Users</h1></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= link_to 'Home Page', matches_path %></td>
+      <td><%= link_to 'New User', new_user_path %></td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table">
+  <thead class="thead-light">
     <tr>
       <th>Name</th>
       <th>Age</th>
       <th>Gender</th>
-      <th colspan="3"></th>
+      <th colspan="5"></th>
     </tr>
   </thead>
 
@@ -25,7 +37,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New User', new_user_path %>

@@ -5,8 +5,7 @@ class MembersController < ApplicationController
   # GET /members
   # GET /members.json
   def index
-    @members = Member.all
-    #@members = @team.members
+    @members = @team.members
   end
 
   # GET /members/1
@@ -16,7 +15,8 @@ class MembersController < ApplicationController
 
   # GET /members/new
   def new
-    @member = Member.new
+    #@member = Member.new
+    @member = @team.members.build
   end
 
   # GET /members/1/edit
@@ -26,12 +26,11 @@ class MembersController < ApplicationController
   # POST /members
   # POST /members.json
   def create
-    @member = Member.new(member_params)
-    #@member = @team.members.build(member_params)
+    @member = @team.members.build(member_params)
 
     respond_to do |format|
       if @member.save
-        format.html { redirect_to team_members_path(@team, @member), notice: 'Score was successfully created.' }
+        format.html { redirect_to team_members_path(@team, @member), notice: 'Member was successfully created.' }
         #format.html { redirect_to @member, notice: 'Member was successfully created.' }
         format.json { render :show, status: :created, location: @member }
       else
@@ -46,7 +45,7 @@ class MembersController < ApplicationController
   def update
     respond_to do |format|
       if @member.update(member_params)
-        format.html { redirect_to team_members_path(@team, @member), notice: 'Score was successfully updated.' }
+        format.html { redirect_to team_members_path(@team, @member), notice: 'Member was successfully updated.' }
         #format.html { redirect_to @member, notice: 'Member was successfully updated.' }
         format.json { render :show, status: :ok, location: @member }
       else

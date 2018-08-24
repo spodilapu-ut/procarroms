@@ -11,15 +11,20 @@
     </div>
   <% end %>
 
+  <!--<div class="field">
+    <%= form.label :match_id %>
+    <%= form.text_field :match_id %>
+    <%= form.collection_select :match_id, Match.all, :id, :id %>
+  </div>-->
+
   <div class="field">
     <%= form.label :match_id %>
-    <!--<%= form.text_field :match_id %>-->
-    <%= form.collection_select :match_id, Match.all, :id, :id %>
+    <%= form.text_field :match_id, :value => @match.id, disabled: true%>
   </div>
 
   <div class="field">
     <%= form.label :set %>
-    <%= form.text_field :set, :value => @new_set, :disabled => true %>
+    <%= form.text_field :set, :value => @new_set, disabled: true%>
   </div>
 
   <div class="field">
@@ -29,7 +34,7 @@
 
   <div class="field">
     <%= form.label :team_id %>
-    <%= form.collection_select :team_id, Team.all, :id, :name  %>
+    <%= form.collection_select :team_id, Team.all, :id, :name %>
   </div>
 
   <div class="actions">

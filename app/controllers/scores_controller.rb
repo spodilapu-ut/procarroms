@@ -35,8 +35,6 @@ class ScoresController < ApplicationController
   # POST /scores.json
   def create
     @score = @match.scores.build(score_params)
-    @total = Score.where(match_id: @score.match_id).where(team_id: @score.team_id).sum(:score)
-    
     respond_to do |format|
     if @score.save
       format.html { redirect_to match_score_path(@match, @score), notice: 'Score was successfully created.' }

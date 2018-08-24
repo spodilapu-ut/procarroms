@@ -11,16 +11,21 @@
     </div>
   <% end %>
 
+  <!-- <div class="field">
+    <%= form.label :team_id %>
+     <%= form.text_field :team_id %>
+    <%= form.collection_select :team_id, Team.all, :name, :name %>
+  </div> -->
+
   <div class="field">
     <%= form.label :team_id %>
-    <!-- <%= form.text_field :team_id %> -->
-    <%= form.collection_select :team_id, Team.all, :name, :name %>
+    <%= form.text_field :team_id, value: @team.name, disabled: true %>
   </div>
 
   <div class="field">
     <%= form.label :user_id %>
     <!-- <%= form.text_field :user_id %> -->
-    <%= form.collection_select :user_id, User.all, :name, :name %>
+    <%= form.collection_select :user_id, User.all, :id, :name %>
   </div>
 
   <div class="actions">
