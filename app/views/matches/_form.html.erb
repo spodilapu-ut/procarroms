@@ -11,25 +11,27 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :team_one_id %>
-    <!--<%= form.text_field :team_one_id %>-->
-    <%= form.collection_select :team_one_id, Team.all, :id, :name %>
+  <div class="d-flex justify-content-center" class="form-group row">
+    <label class="col-sm-2 col-form-label">Team One</label>
+    <div class="col-sm-8">
+      <%= form.collection_select :team_one_id, Team.all, :id, :name %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :team_two_id %>
-    <!--<%= form.text_field :team_two_id %>-->
-    <%= form.collection_select :team_two_id, Team.all, :id, :name %>
+  <div class="d-flex justify-content-center" class="form-group row">
+    <label class="col-sm-2 col-form-label">Team Two</label>
+    <div class="col-sm-8">
+      <%= form.collection_select :team_two_id, Team.all, :id, :name %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :toss_id %>
-    <!--<%= form.text_field :toss_id %>-->
-    <%= form.collection_select :toss_id, Team.all, :id, :name %>
+  <div class="d-flex justify-content-center" class="form-group row">
+    <label class="col-sm-2 col-form-label">Toss</label>
+    <div class="col-sm-8">
+      <%= form.collection_select :toss_id, Team.all, :id, :name %>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="d-flex justify-content-center" class="form-group row">
+    <div class="col-sm-10">
+      <%= form.submit %>
+    </div>
   </div>
 <% end %>

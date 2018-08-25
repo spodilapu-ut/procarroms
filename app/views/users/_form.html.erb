@@ -11,22 +11,27 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="d-flex justify-content-center" class="form-group row">
+    <label class="col-sm-2 col-form-label">Name</label>
+    <div class="col-sm-8">
+      <%= form.text_field :name %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :age %>
-    <%= form.number_field :age %>
+  <div class="d-flex justify-content-center" class="form-group row">
+    <label class="col-sm-2 col-form-label">Age</label>
+    <div class="col-sm-8">
+      <%= form.number_field :age %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :gender %>
-    <%= form.select :gender, [['Male', 1], ['Female', 2]] %>
+  <div class="d-flex justify-content-center" class="form-group row">
+    <label class="col-sm-2 col-form-label">Gender</label>
+    <div class="col-sm-8">
+      <%= form.select :gender, [['Male', 1], ['Female', 2]] %>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="d-flex justify-content-center" class="form-group row">
+    <div class="col-sm-10">
+      <%= form.submit %>
+    </div>
   </div>
 <% end %>

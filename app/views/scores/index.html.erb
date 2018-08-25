@@ -3,13 +3,17 @@
 <table>
   <thead>
     <tr>
-      <th><h1>Scores</h1></th>
+      <h1 class="display-4" align="center">Scores</h1>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><%= link_to 'New Score', new_match_score_path(@match) %></td>
-      <td><%= link_to 'Back To Matches', matches_path %></td>
+      <td style="padding-right: 50px;"><%= link_to 'New Score', new_match_score_path(@match) %></td>
+      <td style="padding-right: 50px;"><%= link_to 'Back To Matches', matches_path %></td>
+      <% @total.each do |key, value| %>
+        <td class="font-weight-bold"> <%= key %> <%= ":" %></td>
+        <td class="font-weight-bold" style="padding-right: 20px;"><%= value %></td>
+      <% end %>
     </tr>
   </tbody>
 </table>

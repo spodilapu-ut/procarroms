@@ -7,7 +7,9 @@ class ScoresController < ApplicationController
   def index
     # @scores = Score.where("match_id = ?", params[:match_id])
     @scores = @match.scores
-    # puts @scores
+    @total = Hash.new
+    @total.store(@match.team_one.name, (Score.where("match_id = (?)", @match.id).where("team_id = (?)", @match.team_one_id).sum(:score)))
+    @total.store(@match.team_two.name, (Score.where("match_id = (?)", @match.id).where("team_id = (?)", @match.team_two_id).sum(:score)))
   end
 
   # GET /scores/1
@@ -21,7 +23,7 @@ class ScoresController < ApplicationController
     @old_score = @match.scores.last
     @score = @match.scores.build
     if @old_score.present?
-      @new_set = @old_score.set + 1;
+      @new_set = @old_score.set + 1
     else
       @new_set = 1
     end 
