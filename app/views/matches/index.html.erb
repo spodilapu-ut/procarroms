@@ -2,11 +2,6 @@
 
 
 <table>
-  <thead>
-    <tr>
-      <h1 class="display-4" align="center">Matches</h1>
-    </tr>
-  </thead>
   <tbody>
     <tr>
       <td style="padding-right: 50px;"><%= link_to 'New Match', new_match_path %></td>
@@ -33,9 +28,9 @@
         <td><%= match.team_one.name %></td>
         <td><%= match.team_two.name %></td>
         <td><%= match.toss.name %></td>
-        <td><%= link_to 'Show', match %></td>
+        <!--<td><%= link_to 'Show', match %></td>
         <td><%= link_to 'Edit', edit_match_path(match) %></td>
-        <td><%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
         <td><%= link_to 'View Score', match_scores_path(match) %></td> 
       </tr>
     <% end %>

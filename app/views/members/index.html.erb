@@ -3,14 +3,15 @@
 <table>
   <thead>
     <tr>
-      <h1 class="display-4" align="center">Members</h1>
+      <h3 align="center"><%= @team.name %></h3>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td style="padding-right: 50px;"><%= link_to 'New Member', new_team_member_path(@team) %></td>
       <td style="padding-right: 50px;"><%= link_to 'View Users', users_path %></td>
-      <td><%= link_to 'Back To Teams', teams_path %></td>
+      <td style="padding-right: 50px;"><%= link_to 'Back To Teams', teams_path %></td>
+      <td><%= link_to 'Back To Matches', matches_path %></td>
     </tr>
   </tbody>
 </table>
@@ -27,11 +28,10 @@
   <tbody>
     <% @members.each do |member| %>
       <tr>
-        <td><%= member.team.name %></td>
         <td><%= member.user.name %></td>
-        <td><%= link_to 'Show', team_member_path(@team, member) %></td>
-        <td><%= link_to 'Edit', edit_team_member_path(@team, member) %></td>
-        <td><%= link_to 'Destroy', team_member_path(@team, member), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <!--<td><%= link_to 'Show', team_member_path(@team, member) %></td>
+        <td><%= link_to 'Edit', edit_team_member_path(@team, member) %></td>-->
+        <td><%= link_to 'Remove Member', team_member_path(@team, member), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

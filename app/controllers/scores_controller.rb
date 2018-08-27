@@ -36,17 +36,20 @@ class ScoresController < ApplicationController
   # POST /scores
   # POST /scores.json
   def create
+    total_team1 = Score.where("match_id = (?)", @match.id).where("team_id = (?)", @match.team_one.id).sum(:score) 
+    total_team2 = Score.where("match_id = (?)", @match.id).where("team_id = (?)", @match.team_two.id).sum(:score) 
+    
     @score = @match.scores.build(score_params)
     respond_to do |format|
-    if @score.save
-      format.html { redirect_to match_score_path(@match, @score), notice: 'Score was successfully created.' }
-      format.json { render :show, status: :created, location: @score }
-    else
-      format.html { render :new }
-      format.json { render json: @score.errors, status: :unprocessable_entity }
+      if @score.save
+        format.html { redirect_to match_scores_path, notice: 'Score was successfully created.' }
+        format.json { render :show, status: :created, location: @score }
+      else
+        format.html { render :new }
+        format.json { render json: @score.errors, status: :unprocessable_entity }
+      end
     end
   end
-end
 
   # PATCH/PUT /scores/1
   # PATCH/PUT /scores/1.json

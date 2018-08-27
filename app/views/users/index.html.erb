@@ -1,11 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <table>
-  <thead>
-    <tr>
-      <h1 class="display-4" align="center">Users</h1>
-    </tr>
-  </thead>
   <tbody>
     <tr>
       <td style="padding-right: 50px;"><%= link_to 'Home Page', matches_path %></td>
@@ -31,9 +26,9 @@
         <td><%= user.name %></td>
         <td><%= user.age %></td>
         <td><%= user.gender %></td>
-        <td><%= link_to 'Show', user %></td>
+        <!--<td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
       </tr>
     <% end %>
   </tbody>

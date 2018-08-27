@@ -3,13 +3,14 @@
 <table>
   <thead>
     <tr>
-      <h1 class="display-4" align="center">Scores</h1>
+      <h3 align="center">Match <%= @match.id %>: <%= @match.team_one.name %> Vs <%= @match.team_two.name %></h3>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td style="padding-right: 50px;"><%= link_to 'New Score', new_match_score_path(@match) %></td>
-      <td style="padding-right: 50px;"><%= link_to 'Back To Matches', matches_path %></td>
+      <td style="padding-right: 50px;"><%= link_to 'View Teams', teams_path %></td>
+      <td style="padding-right: 50px;"><%= link_to 'View Matches', matches_path %></td>
       <% @total.each do |key, value| %>
         <td class="font-weight-bold"> <%= key %> <%= ":" %></td>
         <td class="font-weight-bold" style="padding-right: 20px;"><%= value %></td>
@@ -35,9 +36,9 @@
         <td><%= score.set %></td>
         <td><%= score.score %></td>
         <td><%= score.team.name %></td>
-        <td><%= link_to 'Show', match_score_path(@match, score) %></td>
+        <!--<td><%= link_to 'Show', match_score_path(@match, score) %></td>
         <td><%= link_to 'Edit', edit_match_score_path(@match, score) %></td>
-        <!--<td><%= link_to 'Destroy', match_score_path(@match, score), method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+        <td><%= link_to 'Destroy', match_score_path(@match, score), method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
       </tr>
     <% end %>
   </tbody>

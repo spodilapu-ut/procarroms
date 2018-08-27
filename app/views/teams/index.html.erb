@@ -1,11 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <table>
-  <thead>
-    <tr>
-      <h1 class="display-4" align="center">Teams</h1>
-    </tr>
-  </thead>
   <tbody>
     <tr>
       <td style="padding-right: 50px;"><%= link_to 'New Team', new_team_path %></td>
@@ -26,9 +21,9 @@
     <% @teams.each do |team| %>
       <tr>
         <td><%= team.name %></td>
-        <td><%= link_to 'Show', team %></td>
+        <!--<td><%= link_to 'Show', team %></td>
         <td><%= link_to 'Edit', edit_team_path(team) %></td>
-        <td><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
         <td><%= link_to 'View Members', team_members_path(team) %></td>
       </tr>
     <% end %>

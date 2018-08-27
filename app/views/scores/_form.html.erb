@@ -14,13 +14,13 @@
 <div class="d-flex justify-content-center" class="form-group row">
     <label class="col-sm-2 col-form-label">Match ID</label>
     <div class="col-sm-8">
-      <%= form.text_field :match_id, :value => @match.id, disabled: true %>
+      <%= form.text_field :match_id, :value => @match.id, readonly: true %>
     </div>
   </div>
   <div class="d-flex justify-content-center" class="form-group row">
     <label class="col-sm-2 col-form-label">Set</label>
     <div class="col-sm-8">
-      <%= form.text_field :set, :value => @new_set %>
+      <%= form.text_field :set, :value => @new_set, readonly: true %>
     </div>
   </div>
   <div class="d-flex justify-content-center" class="form-group row">
