@@ -5,10 +5,20 @@
     <tr>
       <h3 align="center">Match <%= @match.id %>: <%= @match.team_one.name %> Vs <%= @match.team_two.name %></h3>
     </tr>
+    <% @flag = "" %>
+    <% @total.each do |key, value| %>
+        <% if key == @match.team_one.name && value == 29 %>
+          <% @flag = "disable_link" %>
+          <h2 align="center"> Winner: <%= key %> </h2>
+        <% elsif key == @match.team_two.name && value == 29 %>
+          <% @flag = "disable_link" %>
+          <h2 align="center"> Winner: <%= key %> </h2>
+        <% end %>
+      <% end %>
   </thead>
   <tbody>
-    <tr>
-      <td style="padding-right: 50px;"><%= link_to 'New Score', new_match_score_path(@match) %></td>
+    <tr> 
+      <td style="padding-right: 50px;"><%= link_to 'New Score', new_match_score_path(@match), class: "#{@flag}" %></td>   
       <td style="padding-right: 50px;"><%= link_to 'View Teams', teams_path %></td>
       <td style="padding-right: 50px;"><%= link_to 'View Matches', matches_path %></td>
       <% @total.each do |key, value| %>
@@ -19,7 +29,6 @@
   </tbody>
 </table>
 
-
 <table class="table">
   <thead class="thead-light">
     <tr>
@@ -29,7 +38,6 @@
       <th colspan="5"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @scores.each do |score| %>
       <tr>

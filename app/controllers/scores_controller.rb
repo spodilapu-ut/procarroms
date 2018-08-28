@@ -36,14 +36,13 @@ class ScoresController < ApplicationController
   # POST /scores
   # POST /scores.json
   def create
-    total_score = Hash.new
-    total_score.store(@match.team_one.id, Score.where("match_id = (?)", @match.id).where("team_id = (?)", @match.team_one.id).sum(:score)) 
-    total_score.store(@match.team_two.id, Score.where("match_id = (?)", @match.id).where("team_id = (?)", @match.team_two.id).sum(:score))
+    @total.store(@match.team_one.id, Score.where("match_id = (?)", @match.id).where("team_id = (?)", @match.team_one.id).sum(:score)) 
+    @total.store(@match.team_two.id, Score.where("match_id = (?)", @match.id).where("team_id = (?)", @match.team_two.id).sum(:score))
 
     @score = @match.scores.build(score_params)
-    
-    total_score.each do |key, value|
-      if key == @score.team_id 
+
+    @total.each do |key, value|
+      if key == @score.team_id
         if value + @score.score > 29
           respond_to do |format|
             format.html { redirect_to match_scores_path, notice: 'Score Cannot be more than 29.' }
