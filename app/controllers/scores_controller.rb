@@ -36,17 +36,30 @@ class ScoresController < ApplicationController
   # POST /scores
   # POST /scores.json
   def create
-    total_team1 = Score.where("match_id = (?)", @match.id).where("team_id = (?)", @match.team_one.id).sum(:score) 
-    total_team2 = Score.where("match_id = (?)", @match.id).where("team_id = (?)", @match.team_two.id).sum(:score) 
-    
+    total_score = Hash.new
+    total_score.store(@match.team_one.id, Score.where("match_id = (?)", @match.id).where("team_id = (?)", @match.team_one.id).sum(:score)) 
+    total_score.store(@match.team_two.id, Score.where("match_id = (?)", @match.id).where("team_id = (?)", @match.team_two.id).sum(:score))
+
     @score = @match.scores.build(score_params)
-    respond_to do |format|
-      if @score.save
-        format.html { redirect_to match_scores_path, notice: 'Score was successfully created.' }
-        format.json { render :show, status: :created, location: @score }
-      else
-        format.html { render :new }
-        format.json { render json: @score.errors, status: :unprocessable_entity }
+    
+    total_score.each do |key, value|
+      if key == @score.team_id 
+        if value + @score.score > 29
+          respond_to do |format|
+            format.html { redirect_to match_scores_path, notice: 'Score Cannot be more than 29.' }
+            format.json { render :show, status: :created, location: @score }
+          end
+        else
+          respond_to do |format|
+            if @score.save
+              format.html { redirect_to match_scores_path, notice: 'Score was successfully created.' }
+              format.json { render :show, status: :created, location: @score }
+            else
+              format.html { render :new }
+              format.json { render json: @score.errors, status: :unprocessable_entity }
+            end
+          end
+        end
       end
     end
   end

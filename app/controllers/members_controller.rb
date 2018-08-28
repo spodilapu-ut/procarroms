@@ -26,16 +26,24 @@ class MembersController < ApplicationController
   # POST /members
   # POST /members.json
   def create
-    @member = @team.members.build(member_params)
 
-    respond_to do |format|
-      if @member.save
-        format.html { redirect_to team_members_path(@team, @member), notice: 'Member was successfully created.' }
-        #format.html { redirect_to @member, notice: 'Member was successfully created.' }
+    count = Member.where("team_id = (?)", @team.id).count
+
+    if count != 2
+      @member = @team.members.build(member_params)
+      respond_to do |format|
+        if @member.save
+          format.html { redirect_to team_members_path(@team, @member), notice: 'Member was successfully created.' }
+          format.json { render :show, status: :created, location: @member }
+        else
+          format.html { render :new }
+          format.json { render json: @member.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to team_members_path(@team, @member), notice: 'Two Members already exists!' }
         format.json { render :show, status: :created, location: @member }
-      else
-        format.html { render :new }
-        format.json { render json: @member.errors, status: :unprocessable_entity }
       end
     end
   end
