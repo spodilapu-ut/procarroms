@@ -36,6 +36,7 @@ class ScoresController < ApplicationController
   # POST /scores
   # POST /scores.json
   def create
+    @total = Hash.new
     @total.store(@match.team_one.id, Score.where("match_id = (?)", @match.id).where("team_id = (?)", @match.team_one.id).sum(:score)) 
     @total.store(@match.team_two.id, Score.where("match_id = (?)", @match.id).where("team_id = (?)", @match.team_two.id).sum(:score))
 
