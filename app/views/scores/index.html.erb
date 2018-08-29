@@ -1,29 +1,39 @@
 <p id="notice"><%= notice %></p>
+<h3 align="center"><%= @match.team_one.name %> Vs <%= @match.team_two.name %></h3>
+<div class="">
+  <% @flag = "" %>
+  <% @total.each do |key, value| %>
+      <% if key == @match.team_one.name && value == 29 %>
+        <% @flag = "disable_link" %>
+        <h2 align="center"> Winner: <%= key %> </h2>
+      <% elsif key == @match.team_two.name && value == 29 %>
+        <% @flag = "disable_link" %>
+        <h2 align="center"> Winner: <%= key %> </h2>
+      <% end %>
+    <% end %>
+</div>
+<div class="">
+  <%= link_to 'Add Score', new_match_score_path(@match), class: "#{@flag}" %> |
+  <%= link_to 'All Matches', matches_path %>
+</div>
+<% @total.each do |key, value| %>
+<span style='margin-right:20px'>
+     <%= key %> <%= ":" %> <strong><%= value %></strong>
+</span>
+<% end %>
 
 <table>
   <thead>
     <tr>
-      <h3 align="center">Match <%= @match.id %>: <%= @match.team_one.name %> Vs <%= @match.team_two.name %></h3>
+
     </tr>
-    <% @flag = "" %>
-    <% @total.each do |key, value| %>
-        <% if key == @match.team_one.name && value == 29 %>
-          <% @flag = "disable_link" %>
-          <h2 align="center"> Winner: <%= key %> </h2>
-        <% elsif key == @match.team_two.name && value == 29 %>
-          <% @flag = "disable_link" %>
-          <h2 align="center"> Winner: <%= key %> </h2>
-        <% end %>
-      <% end %>
+
   </thead>
   <tbody>
     <tr>
-      <td style="padding-right: 50px;"><%= link_to 'Add Score', new_match_score_path(@match), class: "#{@flag}" %></td>
-      <td style="padding-right: 50px;"><%= link_to 'All Matches', matches_path %></td>
-      <% @total.each do |key, value| %>
-        <td class="font-weight-bold"> <%= key %> <%= ":" %></td>
-        <td class="font-weight-bold" style="padding-right: 20px;"><%= value %></td>
-      <% end %>
+      <td style="padding-right: 50px;"></td>
+      <td style="padding-right: 50px;"></td>
+
     </tr>
   </tbody>
 </table>
