@@ -17,10 +17,9 @@
       <% end %>
   </thead>
   <tbody>
-    <tr> 
-      <td style="padding-right: 50px;"><%= link_to 'New Score', new_match_score_path(@match), class: "#{@flag}" %></td>   
-      <td style="padding-right: 50px;"><%= link_to 'View Teams', teams_path %></td>
-      <td style="padding-right: 50px;"><%= link_to 'View Matches', matches_path %></td>
+    <tr>
+      <td style="padding-right: 50px;"><%= link_to 'Add Score', new_match_score_path(@match), class: "#{@flag}" %></td>
+      <td style="padding-right: 50px;"><%= link_to 'All Matches', matches_path %></td>
       <% @total.each do |key, value| %>
         <td class="font-weight-bold"> <%= key %> <%= ":" %></td>
         <td class="font-weight-bold" style="padding-right: 20px;"><%= value %></td>
