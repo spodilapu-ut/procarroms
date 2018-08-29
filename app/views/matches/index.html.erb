@@ -1,36 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<table>
-  <tbody>
-    <tr>
-      <td style="padding-right: 50px;"><%= link_to 'New Match', new_match_path %></td>
-      <td style="padding-right: 50px;"><%= link_to 'View Teams', teams_path %></td>
-      <td style="padding-right: 50px;"><%= link_to 'View Users', users_path %></td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="table">
-  <thead class="thead-light">
-    <tr>
-      <th>Team one</th>
-      <th>Team two</th>
-      <th>Toss</th>
-      <th colspan="5"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @matches.each do |match| %>
-      <tr>
-        <td><%= match.team_one.name %></td>
-        <td><%= match.team_two.name %></td>
-        <td><%= match.toss.name %></td>
-        <!--<td><%= link_to 'Show', match %></td>
-        <td><%= link_to 'Edit', edit_match_path(match) %></td>
-        <td><%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
-        <td><%= link_to 'View Score', match_scores_path(match) %></td> 
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="card-columns" style="margin: 20px; width: 50rem">
+  <% @matches.each do |match| %>
+    <div class="card border-secondary mb-3">
+      <div class="card-body">
+        <h1 class="card-title" align="center">Match <%= match.id %> </h1>
+        <h2 class="card-title" align="center"><%= match.team_one.name %> Vs <%= match.team_two.name %></h2>
+        <h2 class="card-title" align="center">Toss: <%= match.toss.name %> </h2>
+        <h2 class="card-title" align="center"><%= link_to 'View Score', match_scores_path(match), class: "btn btn-success"%></h2>
+      </div>
+    </div>
+  <% end %>
+</div>

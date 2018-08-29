@@ -10,6 +10,25 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/matches">Carroms</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="  navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <%= link_to 'New Match', new_match_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'View Teams', teams_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'View Users', users_path, class: "nav-link" %>
+          </li>
+        </ul>
+      </div>
+    </nav>
     <%= yield %>
   </body>
 </html>

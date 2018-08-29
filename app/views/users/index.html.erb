@@ -10,26 +10,19 @@
   </tbody>
 </table>
 
-<table class="table">
-  <thead class="thead-light">
-    <tr>
-      <th>Name</th>
-      <th>Age</th>
-      <th>Gender</th>
-      <th colspan="5"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.age %></td>
-        <td><%= user.gender %></td>
-        <!--<td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="card-columns" style="margin-top: 10px; margin-left: 300px; width: 60rem">
+  <% @users.each do |user| %>
+    <div class="card border-secondary mb-3">
+      <img src="/assets/user1.jpg" alt="User Image" class="rounded float-left img-thumbnail">
+      <div class="card-body">
+        <h5 align="center" class="card-title">User Name: <%= user.name %></h5>
+        <h5 align="center" class="card-title">Age: <%= user.age %></h5>
+        <% if user.gender == 1 %>
+          <h5 align="center" class="card-title">Gender: Male</h5>
+        <% elsif %>
+          <h5 align="center" class="card-title">Gender: Female</h5>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

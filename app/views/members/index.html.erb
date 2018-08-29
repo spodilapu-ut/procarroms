@@ -3,7 +3,7 @@
 <table>
   <thead>
     <tr>
-      <h3 align="center"><%= @team.name %></h3>
+      <!--<h3 align="center"><%= @team.name %></h3>-->
     </tr>
   </thead>
   <tbody>
@@ -16,23 +16,15 @@
   </tbody>
 </table>
 
-<table class="table">
-  <thead class="thead-light">
-    <tr>
-      <th>Team</th>
-      <th>User</th>
-      <th colspan="5"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @members.each do |member| %>
-      <tr>
-        <td><%= member.user.name %></td>
-        <!--<td><%= link_to 'Show', team_member_path(@team, member) %></td>
-        <td><%= link_to 'Edit', edit_team_member_path(@team, member) %></td>-->
-        <td><%= link_to 'Remove Member', team_member_path(@team, member), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="card-columns" style="margin-top: 20px; margin-left: 330px; width: 60rem">
+  <% @members.each do |member| %>
+    <div class="card border-secondary mb-3">
+      <!--<img src="/assets/user1.jpg" alt="User Image" class="rounded float-left img-thumbnail">-->
+      <div class="card-body">
+        <h5 align="center" class="card-title">User Name: <%= member.user.name %></h5>
+        <h5 align="center" class="card-title">Team: <%= @team.name %></h5>
+        <h5 align="center"class="card-title"><%= link_to 'Remove', team_member_path(@team, member), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"%></h5>
+      </div>
+    </div>
+  <% end %>
+</div>
