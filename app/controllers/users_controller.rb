@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  protect_from_forgery
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   # GET /users
   # GET /users.json
@@ -14,10 +15,17 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
+    respond_to do |format|
+      format.js { render template: 'users/modal.js.erb' }
+    end
   end
 
   # GET /users/1/edit
-  def edit
+   def edit
+    @user = User.find(params[:id])
+    respond_to do |format|
+      format.js { render template: 'users/modal.js.erb' }
+    end
   end
 
   # POST /users
@@ -26,9 +34,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     respond_to do |format|
-      if @user.save
+     if @user.save
         format.html { redirect_to users_path, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
+       format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -50,6 +58,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    @user = User.find(params[:id])
+
+    if @user.update_attributes(user_params)
+      flash[:success] = "User updated"
+      redirect_to @user
+    else
+      render 'edit'
+    end
+  end
+
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
@@ -65,7 +84,7 @@ class UsersController < ApplicationController
     def set_user
       @user = User.find(params[:id])
     end
-
+    
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:name, :age, :gender)

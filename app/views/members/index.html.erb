@@ -6,17 +6,16 @@
       <!--<h3 align="center"><%= @team.name %></h3>-->
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <td style="padding-right: 50px;"><%= link_to 'New Member', new_team_member_path(@team) %></td>
-      <td style="padding-right: 50px;"><%= link_to 'View Users', users_path %></td>
-      <td style="padding-right: 50px;"><%= link_to 'Back To Teams', teams_path %></td>
-      <td><%= link_to 'Back To Matches', matches_path %></td>
-    </tr>
-  </tbody>
 </table>
 
-<div class="card-columns" style="margin-top: 20px; margin-left: 330px; width: 60rem">
+<div class="">
+  <%= link_to 'Add Member', new_team_member_path(@team) %> |
+  <!-- <%= link_to 'View Users', users_path %> |
+  <%= link_to 'All Teams', teams_path %> | -->
+  <%= link_to 'All Matches', matches_path %>
+</div>
+
+<div class="card-columns float-xl-left" style="margin-top: 20px; margin-left: 330px; width: 60rem">
   <% @members.each do |member| %>
     <div class="card border-secondary mb-3">
       <!--<img src="/assets/user1.jpg" alt="User Image" class="rounded float-left img-thumbnail">-->

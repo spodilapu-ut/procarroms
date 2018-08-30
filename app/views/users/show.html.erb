@@ -15,5 +15,6 @@
   <%= @user.gender %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Edit', edit_user_path(@user), remote: true, class: "btn btn-info"%>
+<div id="myModal"></div> |
 <%= link_to 'Back', users_path %>

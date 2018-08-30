@@ -1,19 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<table>
-  <tbody>
-    <tr>
-      <td style="padding-right: 50px;"><%= link_to 'Home Page', matches_path %></td>
-      <td style="padding-right: 50px;"><%= link_to 'New User', new_user_path %></td>
-      <td><%= link_to 'View Teams', teams_path %></td>
-    </tr>
-  </tbody>
-</table>
+<div class="">
+  <%= link_to 'New User', new_user_path, remote: true, class: "btn btn-primary" %>
+  <%= link_to 'All Matches', matches_path, class: "btn btn-primary" %>
+  <div id="myModal"></div>
+</div>
 
-<div class="card-columns" style="margin-top: 10px; margin-left: 300px; width: 60rem">
+<div class="card-columns" style="margin-top: 20px;">
   <% @users.each do |user| %>
     <div class="card border-secondary mb-3">
-      <img src="/assets/user1.jpg" alt="User Image" class="rounded float-left img-thumbnail">
+      <!--<img src="/assets/user1.jpg" alt="User Image" class="rounded float-left img-thumbnail">-->
       <div class="card-body">
         <h5 align="center" class="card-title">User Name: <%= user.name %></h5>
         <h5 align="center" class="card-title">Age: <%= user.age %></h5>
@@ -26,3 +22,4 @@
     </div>
   <% end %>
 </div>
+

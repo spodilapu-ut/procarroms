@@ -16,6 +16,7 @@
   <%= link_to 'Add Score', new_match_score_path(@match), class: "#{@flag}" %> |
   <%= link_to 'All Matches', matches_path %>
 </div>
+
 <% @total.each do |key, value| %>
 <span style='margin-right:20px'>
      <%= key %> <%= ":" %> <strong><%= value %></strong>
@@ -33,7 +34,6 @@
     <tr>
       <td style="padding-right: 50px;"></td>
       <td style="padding-right: 50px;"></td>
-
     </tr>
   </tbody>
 </table>
