@@ -1,12 +1,16 @@
 class ScoresController < ApplicationController
   before_action :set_match
   before_action :set_score, only: [:show, :edit, :update, :destroy]
+  before_action :set_total_score
 
   # GET /scores
   # GET /scores.json
   def index
     # @scores = Score.where("match_id = ?", params[:match_id])
-    @scores = @match.scores
+    #@scores = @match.scores
+
+    @scores = Score.where("match_id = (?)", params[:match_id]).order(id: :desc)
+
     @total = Hash.new
     @total.store(@match.team_one.name, (Score.where("match_id = (?)", @match.id).where("team_id = (?)", @match.team_one_id).sum(:score)))
     @total.store(@match.team_two.name, (Score.where("match_id = (?)", @match.id).where("team_id = (?)", @match.team_two_id).sum(:score)))
@@ -101,5 +105,10 @@ class ScoresController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def score_params
       params.require(:score).permit(:set, :score, :team_id)
+    end
+
+    def set_total_score
+      @sum_team_one = Score.where("team_id = (?)", @match.team_one.id).where("match_id = (?)", @match.id).sum(:score)
+      @sum_team_two = Score.where("team_id = (?)", @match.team_two.id).where("match_id = (?)", @match.id).sum(:score)
     end
 end

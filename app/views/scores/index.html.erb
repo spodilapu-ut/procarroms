@@ -1,62 +1,52 @@
-<p id="notice"><%= notice %></p>
-<h3 align="center"><%= @match.team_one.name %> Vs <%= @match.team_two.name %></h3>
-<div class="">
-  <% @flag = "" %>
-  <% @total.each do |key, value| %>
-      <% if key == @match.team_one.name && value == 29 %>
-        <% @flag = "disable_link" %>
-        <h2 align="center"> Winner: <%= key %> </h2>
-      <% elsif key == @match.team_two.name && value == 29 %>
-        <% @flag = "disable_link" %>
-        <h2 align="center"> Winner: <%= key %> </h2>
-      <% end %>
-    <% end %>
-</div>
-<div class="">
-  <%= link_to 'Add Score', new_match_score_path(@match), class: "#{@flag}" %> |
-  <%= link_to 'All Matches', matches_path %>
-</div>
+<div class="container-fluid">
 
-<% @total.each do |key, value| %>
-<span style='margin-right:20px'>
-     <%= key %> <%= ":" %> <strong><%= value %></strong>
-</span>
-<% end %>
-
-<table>
-  <thead>
+  <table class="table">
     <tr>
+      <td>
+        <h2>
+          <%= @match.team_one.name %> Vs <%= @match.team_two.name %>
+        </h2>
+      </td>
+      <% @flag = "" %>
+      
+      <% @total.each do |key, value| %>
+        <% if key == @match.team_one.name && value == 29 %>
+          <% @flag = "disable_link" %>
+          <td>
+            <h2 class="float-right">Winner: <%= key %> </h2>
+          </td>
+          <% elsif key == @match.team_two.name && value == 29 %>
+            <% @flag = "disable_link" %>
+            <td>
+              <h2>Winner: <%= key %></h2>
+            </td>
+          <% end %>
+        <% end %>
+    </tr>  
+  </table><br/>
 
-    </tr>
+<div class="container-fluid">
+  <div class="container-fluid float-center">
+    <h5> 
+      Started: <%= @match.created_at.strftime("%d-%m-%Y %I:%M %p") %>
+      <%= link_to 'All Matches', matches_path, class: "btn btn-primary float-right ml-2" %>
+      <%= link_to 'Add Score', new_match_score_path(@match), class: "#{@flag} btn btn-success float-right " %>
+    </h5>
+  </div>
+</div><br/>
 
-  </thead>
-  <tbody>
-    <tr>
-      <td style="padding-right: 50px;"></td>
-      <td style="padding-right: 50px;"></td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="table">
-  <thead class="thead-light">
-    <tr>
-      <th>Set</th>
-      <th>Score</th>
-      <th>Team</th>
-      <th colspan="5"></th>
-    </tr>
-  </thead>
-  <tbody>
+<div class="container-fluid">
+  <div class="row">
     <% @scores.each do |score| %>
-      <tr>
-        <td><%= score.set %></td>
-        <td><%= score.score %></td>
-        <td><%= score.team.name %></td>
-        <!--<td><%= link_to 'Show', match_score_path(@match, score) %></td>
-        <td><%= link_to 'Edit', edit_match_score_path(@match, score) %></td>
-        <td><%= link_to 'Destroy', match_score_path(@match, score), method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
-      </tr>
+      <div class="col-md-4 col-sm-6 col-xs-12 my-4">
+        <div class="card border border-dark">
+          <div class="card-body ">
+            <h4 class="card-title text-center">Set #<%= score.set %> <%= score.created_at.strftime("%d-%m-%Y %I:%M %p") %></h4>
+            <h1 class="card-title text-center"><%= score.team.name %> - <%= score.score %></h1>
+            <h3 class="card-text text-center"><%= @match.team_one.name %> <%= @sum_team_one %> - <%= @sum_team_two %> <%= @match.team_two.name %> </h3>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>
