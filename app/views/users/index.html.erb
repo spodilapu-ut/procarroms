@@ -1,7 +1,18 @@
-<p id="notice"><%= notice %></p>
+<% if flash[:notice] %>
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <%= notice %>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<% end %>
 
 <div class="">
-  <%= link_to 'New User', new_user_path, remote: true, class: "btn btn-primary" %>
+  <!-- <%= link_to 'New User', new_user_path, remote: true, class: "btn btn-primary" %> -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    New User
+  </button>
+
   <%= link_to 'All Matches', matches_path, class: "btn btn-primary" %>
   <div id="myModal"></div>
 </div>
@@ -23,3 +34,23 @@
   <% end %>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= render 'form', user: @user %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id='add-new-user' class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

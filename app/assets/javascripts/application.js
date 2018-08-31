@@ -18,11 +18,8 @@
 //= require bootstrap
 //= require_tree .
 
-//function disable_link()
-//{
-//	document.getElementById("New Score").disabled = true;
-//}
-
-//document.addEventListener("turbolinks:load", function()
-// {  
-//})
+$(function(){
+  $('#add-new-user').on('click', function(){
+    $('#new_user').submit();
+  });
+});
