@@ -1,31 +1,31 @@
 <p id="notice"><%= notice %></p>
 
-<table>
-  <tbody>
-    <tr>
-      <td style="padding-right: 50px;"><%= link_to 'New Team', new_team_path %></td>
-      <td><%= link_to 'Back To Matches', matches_path %><br></td>
-    </tr>
-  </tbody>
-</table>
+<div class="container-fluid">
+  <div class="container-fluid">
+    <div> 
+      <%= link_to 'New Team', new_team_path, class: "btn btn-primary float-right ml-2" %>
+      <%= link_to 'All Matches', matches_path, class: "#{@flag} btn btn-success float-right " %>
+    </div>
+  </div>
+</div><br/>
 
-<table class="table">
-  <thead class="thead-light">
-    <tr>
-      <th>Name</th>
-      <th colspan="5"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div class="container">
+  <div class="row">
     <% @teams.each do |team| %>
-      <tr>
-        <td><%= team.name %></td>
-        <!--<td><%= link_to 'Show', team %></td>
-        <td><%= link_to 'Edit', edit_team_path(team) %></td>
-        <td><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
-        <td><%= link_to 'View Members', team_members_path(team) %></td>
-      </tr>
+      <div class="col-12 col-md-4 col-sm-6 my-4">
+        <div class="card border border-dark">
+          <div class="card-body ">
+            <div class="card-title text-center">
+              <div class="card-title font-weight-bold h3" align="center">
+                Team: <%= team.name %>
+              </div>
+              <div class="card-title font-weight-bold h3" align="center">
+                <%= link_to 'View Members', team_members_path(team), class: "btn btn-success" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>

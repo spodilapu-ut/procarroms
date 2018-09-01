@@ -1,28 +1,41 @@
-<div class="">
-  <!-- <%= link_to 'New User', new_user_path, remote: true, class: "btn btn-primary" %> -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    New User
-  </button>
-
-  <%= link_to 'All Matches', matches_path, class: "btn btn-primary" %>
-  <div id="myModal"></div>
-</div>
-
-<div class="card-columns" style="margin-top: 20px;">
-  <% @users.each do |user| %>
-    <div class="card border-secondary mb-3">
-      <!--<img src="/assets/user1.jpg" alt="User Image" class="rounded float-left img-thumbnail">-->
-      <div class="card-body">
-        <h5 align="center" class="card-title">User Name: <%= user.name %></h5>
-        <h5 align="center" class="card-title">Age: <%= user.age %></h5>
-        <% if user.gender == 1 %>
-          <h5 align="center" class="card-title">Gender: Male</h5>
-        <% elsif %>
-          <h5 align="center" class="card-title">Gender: Female</h5>
-        <% end %>
-      </div>
+<br>
+<div class="container-fluid">
+  <div class="container-fluid">
+    <div> 
+      <button type="button" class="btn btn-primary float-right ml-2" data-toggle="modal" data-target="#exampleModal">New User
+      </button>
+      <%= link_to 'All Matches', matches_path, class: "btn btn-success float-right " %>
     </div>
-  <% end %>
+  </div>
+</div><br/>
+
+<div class="container-fluid">
+  <div class="row">
+    <% @users.each do |user| %>
+      <div class=" col-6 col-md-4 col-sm-6 my-4">
+        <div class="card border border-dark">
+          <!--<img src="/assets/user1.jpg" alt="User Image" class="rounded float-left img-thumbnail">-->
+          <div class="card-body ">
+            <div class="card-title text-center font-weight-bold h4">
+              User Name: <%= user.name %>
+            </div>
+            <div class="card-text text-center font-weight-bold h4">
+              Age: <%= user.age %>
+            </div>
+            <% if user.gender == 1 %>
+              <div class="card-text text-center font-weight-bold font-italic h4">
+                Gender: Male
+              </div>
+            <% elsif %>
+              <div class="card-text text-center font-weight-bold font-italic h4">
+                Gender: Female
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
 
 <!-- Modal -->

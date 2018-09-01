@@ -8,8 +8,41 @@ class ScoresController < ApplicationController
   def index
     # @scores = Score.where("match_id = ?", params[:match_id])
     #@scores = @match.scores
-
+    @set_scores = {}
+    @sets = {}
+    # puts @match.inspect
     @scores = Score.where("match_id = (?)", params[:match_id]).order(id: :desc)
+    # puts @scores.inspect
+    @scores.each do |score|
+      # puts score.inspect
+      @set_scores[score.team_id] ||= {}
+    end
+    set_id = 1;
+    @scores.each do |score|
+      @set_scores.each do |team_id, value|
+        @set_scores[team_id][set_id] ||= {}
+        if(team_id == score.team_id)
+          @set_scores[team_id][set_id] = score.score  
+        else
+          @set_scores[team_id][set_id] = 0
+        end
+      end
+      set_id += 1
+    end
+    @set_scores.each do |team_id, set_score|
+      set_score.each do |set_id, set_score| 
+        @sets[team_id] ||= {}
+        @sets[team_id][set_id] ||= []
+        if(set_id == 1)
+          @sets[team_id][set_id] = set_score
+        else
+          @sets[team_id][set_id] = @sets[team_id][set_id-1] + set_score
+        end
+
+      end
+    end
+    puts @scores.inspect
+    puts @sets.inspect
 
     @total = Hash.new
     @total.store(@match.team_one.name, (Score.where("match_id = (?)", @match.id).where("team_id = (?)", @match.team_one_id).sum(:score)))
@@ -95,7 +128,7 @@ class ScoresController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_score
-      @score = @match.scores.find(params[:id])
+      @score = @match.scores.find(params[:id])     
     end
 
     def set_match
