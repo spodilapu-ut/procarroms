@@ -1,8 +1,11 @@
 <br/>
 <div class="container-fluid">
   <div class="container-fluid">
-    <div class="font-weight-bold h1"> 
+    <div class="font-weight-bold h3">
       <%= @match.team_one.name %> Vs <%= @match.team_two.name %>
+      <span class='match-start-time'>
+        <%= @match.created_at.strftime("%d-%B %I:%M %p") %>
+      </span>
       <% @total.each do |key, value| %>
         <% if key == @match.team_one.name && value == 29 %>
           <% @flag = "disable_link" %>
@@ -18,40 +21,48 @@
         <% end %>
     </div>
   </div>
-</div><br/>
- 
-<div class="container-fluid">
-  <div class="container-fluid">
-    <div class="font-weight-bold h3">
-      Started: <%= @match.created_at.strftime("%d-%B-%Y %I:%M %p") %>
-      <%= link_to 'All Matches', matches_path, class: "btn btn-primary float-right ml-2" %>
-      <%= link_to 'Add Score', new_match_score_path(@match), class: "#{@flag} btn btn-success float-right " %>
-    </div>
-  </div>
-</div><br/>
+</div>
 
 <div class="container-fluid">
+  <div class="container-fluid">
+    <div class="font-weight-bold heading-action">
+      <%= link_to 'All Matches', matches_path, class: "btn btn-primary btn-sm float-right ml-2" %>
+      <%= link_to 'Add Score', new_match_score_path(@match), class: "#{@flag} btn btn-success btn-sm float-right " %>
+    </div>
+    <div class="clearfix">
+
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+<% @scores.each do |score| %>
   <div class="row">
-    <% @scores.each do |score| %>
-      <div class=" col-6 col-md-4 col-sm-6 my-4">
+      <div class="col-md-4 col-sm-12 my-4">
         <div class="card border border-dark">
-          <div class="card-body ">
-            <div class="card-title text-center">
-              <div class="font-weight-bold h4">
-                #<%= score.set %>
-                <%= score.created_at.strftime("%d-%B-%Y %I:%M %p") %>
+          <div class="card-body score-card-body">
+            <div class="card-title text-center score-card-title">
+              <div class="font-weight-bold">
+                <span class='float-left'>
+                  #<%= score.set %>
+                </span>
+                <span class='float-right'>
+                  <%= score.created_at.strftime("%I:%M %p") %>
+                </span>
+              </div>
+              <div class="clearfix">
               </div>
             </div>
-            <div class="card-title text-center font-weight-bold h4">
+            <div class="card-title text-center font-weight-bold actual-score">
               <%= score.team.name %> - <%= score.score %>
             </div>
-              <div class="card-text text-center font-weight-bold font-italic h4">
-                <%= @match.team_one.name %> <%= @sets[@match.team_one.id][score.set] %> - 
-                <%= @sets[@match.team_two.id][score.set] %> <%= @match.team_two.name %> 
+              <div class="card-text text-center font-weight-bold font-italic">
+                <%= @match.team_one.name %> <%= @sets[@match.team_one.id][score.set] %> -
+                <%= @sets[@match.team_two.id][score.set] %> <%= @match.team_two.name %>
               </div>
             </div>
           </div>
       </div>
-    <% end %>
+
   </div>
+  <% end %>
 </div>
