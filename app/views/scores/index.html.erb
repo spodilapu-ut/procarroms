@@ -34,6 +34,7 @@
     </div>
   </div>
 </div>
+
 <div class="container-fluid">
   <div class="row">
     <% @scores.each do |score| %>
@@ -42,27 +43,29 @@
           <div class="card-body score-card-body">
             <div class="card-title text-center score-card-title">
               <div class="font-weight-bold">
+                
                 <span class='float-left'>
                   #<%= score.set %>
                 </span>
+                
                 <span class='float-right'>
                   <%= score.created_at.strftime("%I:%M %p") %>
                 </span>
               </div>
+            
               <div class="clearfix">
               </div>
             </div>
             <div class="card-title text-center font-weight-bold actual-score">
               <%= score.team.name %> - <%= score.score %>
             </div>
-              <div class="card-text text-center font-weight-bold font-italic">
-                <%= @match.team_one.name %> <%= @sets[@match.team_one.id][score.set] %> -
-                <%= @sets[@match.team_two.id][score.set] %> <%= @match.team_two.name %>
-              </div>
+            <div class="card-text text-center font-weight-bold font-italic">
+              <%= @match.team_one.name %> <%= @sets[@match.team_one.id][score.set] %> -
+              <%= @sets[@match.team_two.id][score.set] %> <%= @match.team_two.name %>
             </div>
           </div>
+        </div>
       </div>
-<% end %>
+    <% end %>
   </div>
-
 </div>

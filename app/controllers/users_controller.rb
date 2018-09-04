@@ -16,9 +16,6 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
-    respond_to do |format|
-      format.js { render template: 'users/modal.js.erb' }
-    end
   end
 
   # GET /users/1/edit
