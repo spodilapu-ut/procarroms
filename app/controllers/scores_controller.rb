@@ -43,6 +43,9 @@ class ScoresController < ApplicationController
     @total = Hash.new
     @total.store(@match.team_one.name, (Score.where("match_id = (?)", @match.id).where("team_id = (?)", @match.team_one_id).sum(:score)))
     @total.store(@match.team_two.name, (Score.where("match_id = (?)", @match.id).where("team_id = (?)", @match.team_two_id).sum(:score)))
+
+    @members_team_one = Member.where("team_id = (?)", @match.team_one.id)
+    @members_team_two = Member.where("team_id = (?)", @match.team_two.id)
   end
 
   # GET /scores/1
@@ -52,7 +55,6 @@ class ScoresController < ApplicationController
 
   # GET /scores/new
   def new
-    #@score = Score.new
     @old_score = @match.scores.last
     @score = @match.scores.build
     if @old_score.present?

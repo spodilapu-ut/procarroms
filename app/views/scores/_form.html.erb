@@ -1,5 +1,5 @@
-<%= form_with(model: [@match, score], local: true) do |form| %>
-  <% if score.errors.any? %>
+<%= form_for([@match, @score]) do |form| %>
+  <% if @score.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(score.errors.count, "error") %> prohibited this score from being saved:</h2>
 

@@ -23,3 +23,9 @@ $(function(){
     $('#new_user').submit();
   });
 });
+
+$(function(){
+	$('#add-new-team').on('click', function(){
+		$('#new_team').submit();
+	});
+});
