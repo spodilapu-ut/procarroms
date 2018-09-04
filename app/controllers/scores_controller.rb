@@ -10,13 +10,17 @@ class ScoresController < ApplicationController
     #@scores = @match.scores
     @set_scores = {}
     @sets = {}
-    # puts @match.inspect
+    
+    @set_scores[@match.team_one.id] ||= {}
+    @set_scores[@match.team_two.id] ||= {}
+    
+    #@sets[@match.team_one.id] ||= []
+    #@sets[@match.team_two.id] ||= []
+    puts @match.inspect
     @scores = Score.where("match_id = (?)", params[:match_id]).order(id: :desc)
     # puts @scores.inspect
-    @scores.each do |score|
-      # puts score.inspect
-      @set_scores[score.team_id] ||= {}
-    end
+    
+    puts @set_scores.inspect
     set_id = 1;
     @scores.each do |score|
       @set_scores.each do |team_id, value|
@@ -24,11 +28,15 @@ class ScoresController < ApplicationController
         if(team_id == score.team_id)
           @set_scores[team_id][set_id] = score.score  
         else
+          puts team_id
           @set_scores[team_id][set_id] = 0
         end
       end
       set_id += 1
     end
+    #puts "Set Scores"
+    
+    puts @scores.inspect
     @set_scores.each do |team_id, set_score|
       set_score.each do |set_id, set_score| 
         @sets[team_id] ||= {}
@@ -38,11 +46,10 @@ class ScoresController < ApplicationController
         else
           @sets[team_id][set_id] = @sets[team_id][set_id-1] + set_score
         end
-
       end
     end
-    puts @scores.inspect
-    puts @sets.inspect
+    #puts @scores.inspect
+    #puts @sets.inspect
 
     @total = Hash.new
     @total.store(@match.team_one.name, (Score.where("match_id = (?)", @match.id).where("team_id = (?)", @match.team_one_id).sum(:score)))
