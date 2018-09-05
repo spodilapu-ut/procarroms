@@ -29,3 +29,13 @@ $(function(){
 		$('#new_team').submit();
 	});
 });
+
+/*function test()
+{
+ 	var option_one = document.getElementById('team_one_select');
+ 	var option_two = document.getElementById('team_two_select');
+ 	var team_one = option_one.options[option_one.selectedIndex].text;
+ 	var team_two = option_two.options[option_two.selectedIndex].text;
+	alert(team_one);
+	alert(team_two);
+}*/

@@ -16,6 +16,7 @@ class MatchesController < ApplicationController
   # GET /matches/new
   def new
     @match = Match.new
+
   end
 
   # GET /matches/1/edit
@@ -25,8 +26,8 @@ class MatchesController < ApplicationController
   # POST /matches
   # POST /matches.json
   def create
-    @match = Match.new(match_params)
-    respond_to do |format|
+      @match = Match.new(match_params)
+      respond_to do |format|
       if @match.save
         format.html { redirect_to new_match_score_path(@match)}
         format.json { render :show, status: :created, location: @match }

@@ -21,7 +21,23 @@
                 Toss: <%= match.toss.name %>
               </div>
               <div class="card-title">
-                <%= link_to 'View Score', match_scores_path(match), class: "btn btn-success btn-block" %>
+                <%= link_to 'View Detailed Score', match_scores_path(match), class: "btn btn-success btn-block" %>
+              </div>
+              <div class="card-title font-weight-bold font-italic score-font">
+                <% total_team_one = Score.where("match_id = (?)", match.id).where("team_id = (?)", match.team_one.id).sum(:score) %>
+                <% total_team_two = Score.where("match_id = (?)", match.id).where("team_id = (?)", match.team_two.id).sum(:score) %>
+                <div class="text-center">
+                  <%= match.team_one.name %> <%= total_team_one %> - <%= match.team_two.name %> <%= total_team_two %>
+                </div>
+                <div class="text-center">   
+                  <% if total_team_one == 29 %>
+                    Winner: <%= match.team_one.name %>
+                  <% elsif total_team_two == 29 %>
+                    Winner: <%= match.team_two.name %>
+                  <% else %>
+                    Match in Progress
+                  <% end %>
+                </div>
               </div>
             </div>
           </div>

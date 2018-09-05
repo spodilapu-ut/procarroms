@@ -60,29 +60,39 @@
               <%= score.team.name %> - <%= score.score %>
             </div>
 
-            <!--<% if @members_team_one.length == 1 && @members_team_two.length == 1 %>
-              <div class="card-title text-center font-weight-bold">
+            <div class="card-title text-center font-weight-bold">
+              <% if @members_team_one.length == 1 %>
                 <% @members_team_one.each do |member| %>
-                  <%= member.user.name %>(<%= @match.team_one.name %>)
-                <% end %> Vs
-            
-                <% @members_team_two.each do |member| %>
-                  <%= member.user.name %>(<%= @match.team_two.name %>)
-                <% end %>
-              </div>
-            <% end %>
+                  <%= member.user.name %>
+                <% end %> (<%= @match.team_one.name %>) Vs
+              <% end %>
 
-            <% if @members_team_one.length == 2 && @members_team_two.length == 2 %>
-              <div class="card-title text-center font-weight-bold">
-                <% @members_team_one.each do |member| %>
-                  <%= member.user.name %>
-                <% end %> Vs
-            
+              <% if @members_team_one.length == 2 %>
+                <% @members_team_one.each_with_index do |member, index| %>
+                  <% if index == 0 %>
+                    <%= member.user.name %>,
+                  <% else %>
+                    <%= member.user.name %>
+                  <% end %>
+                <% end %> (<%= @match.team_one.name %>) Vs
+              <% end %>
+
+              <% if @members_team_two.length == 1 %>
                 <% @members_team_two.each do |member| %>
                   <%= member.user.name %>
-                <% end %>
-              </div>
-            <% end %>-->
+                <% end %>(<%= @match.team_two.name %>)
+              <% end %>
+
+              <% if @members_team_two.length == 2 %>
+                <% @members_team_two.each_with_index do |member, index| %>
+                  <% if index == 0 %>
+                    <%= member.user.name %>,
+                  <% else %>
+                    <%= member.user.name %>
+                  <% end %>
+                <% end %> (<%= @match.team_two.name %>)
+              <% end %>
+            </div>
 
             <div class="card-text text-center font-weight-bold font-italic">
               <%= @match.team_one.name %> <%= @sets[@match.team_one.id][score.set] %> -
