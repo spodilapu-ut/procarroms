@@ -27,6 +27,8 @@ class MatchesController < ApplicationController
   # POST /matches.json
   def create
       @match = Match.new(match_params)
+      puts "Match"
+      puts match_params.inspect
       respond_to do |format|
       if @match.save
         format.html { redirect_to new_match_score_path(@match)}

@@ -22,7 +22,6 @@ class ScoresController < ApplicationController
         if(team_id == score.team_id)
           @set_scores[team_id][set_id] = score.score  
         else
-          puts team_id
           @set_scores[team_id][set_id] = 0
         end
       end
