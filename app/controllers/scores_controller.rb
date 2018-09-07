@@ -15,20 +15,24 @@ class ScoresController < ApplicationController
     @set_scores[@match.team_two.id] ||= {}
     
     @scores = Score.where("match_id = (?)", params[:match_id]).order(id: :desc)
-    set_id = 1;
+    set_id = @scores.length
     @scores.each do |score|
       @set_scores.each do |team_id, value|
         @set_scores[team_id][set_id] ||= {}
         if(team_id == score.team_id)
-          @set_scores[team_id][set_id] = score.score  
+          @set_scores[team_id][set_id] = score.score
         else
           @set_scores[team_id][set_id] = 0
         end
       end
-      set_id += 1
+      set_id -= 1
     end
+    puts @scores.inspect
+    puts @set_scores.inspect
+
     @set_scores.each do |team_id, set_score|
-      set_score.each do |set_id, set_score| 
+      x =  Hash[set_score.to_a.reverse]
+      x.each do |set_id, set_score| 
         @sets[team_id] ||= {}
         @sets[team_id][set_id] ||= []
         if(set_id == 1)
@@ -75,7 +79,6 @@ class ScoresController < ApplicationController
     @total.store(@match.team_two.id, Score.where("match_id = (?)", @match.id).where("team_id = (?)", @match.team_two.id).sum(:score))
 
     @score = @match.scores.build(score_params)
-
     @total.each do |key, value|
       if key == @score.team_id
         if value + @score.score > 29

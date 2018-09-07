@@ -12,21 +12,21 @@
   <% end %>
 
   <div class="d-flex justify-content-center form-group row">
-    <label class="col-sm-2 col-form-label">Team One</label>
+    <label class="col-sm-2 col-form-label text-center">Team One</label>
     <div class="col-sm-10">
       <%= form.collection_select(:team_one_id, Team.order(:name), :id, :name,
         {:prompt => true}, {:class => 'custom-select mb-3 select-width', :id => 'team_one_select', :onchange => 'populate_team_one()'}) %>
     </div>
   </div>
   <div class="d-flex justify-content-center form-group row">
-    <label class="col-sm-2 col-form-label">Team Two</label>
+    <label class="col-sm-2 col-form-label text-center">Team Two</label>
     <div class="col-sm-10">
       <%= form.collection_select(:team_two_id, Team.order(:name), :id, :name,
         {:prompt => true}, {:class => 'custom-select mb-3 select-width', :id => 'team_two_select', :disabled => "disabled", :onchange => 'populate_team_two()'}) %>
     </div>
   </div>
   <div class="d-flex justify-content-center form-group  row">
-    <label class="col-sm-2 col-form-label">Toss</label>
+    <label class="col-sm-2 col-form-label text-center">Toss</label>
     <div class="col-sm-10" id="div-toss" >
       <%= form.collection_select(:toss_id, Team.all, :id, :name,
         { :prompt=>true}, {:class=>'custom-select mb-3 select-width', :disabled => "disabled", :id => 'toss_select'}) %>
@@ -36,6 +36,7 @@
   <div class="d-flex justify-content-center form-group row">
     <div class="col-sm-10">
       <%= form.submit class: 'btn btn-sm btn-success' %>
+      <%= link_to 'Back', matches_path, class: "btn btn-sm btn-secondary" %>
     </div>
   </div>
 <% end %>

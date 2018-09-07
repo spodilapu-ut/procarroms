@@ -39,71 +39,58 @@ function populate_team_one()
 	var option_two = document.getElementById("team_two_select");
 	var team_one = option_one.options[option_one.selectedIndex].text;
 	var option = document.createElement("option");
-	var option_team = document.createElement("option");
 	var teams = new Array();
 
 	for (var i = option_two.options.length - 1 ; i > 0 ; i--)
+	{
     	option_two.remove(i);
+	}
 
 	for(var i=1;i<option_one.length;i++)
 	{
 		if(option_one.options[i].text != team_one)
 		{
-			teams.push(option_one.options[i].text);
+			teams.push(option_one.options[i]);
 		}
 	}
-	
 	for(var i=0;i<teams.length;i++)
 	{
 		var option_team = document.createElement("option");
-		option_team.value = i;
-		option_team.text = teams[i];
+		option_team.value = teams[i].value;
+		option_team.text = teams[i].text;
 		option_two.appendChild(option_team);
 	}
 
 	document.getElementById("team_two_select").disabled = false;
-	
-	index = check_toss_option(team_one);
-	if(index < 1)
-	{
-		option.value = 1;
-		option.text = team_one;
-		selectToss.appendChild(option);
-	}
-
-	else
-	{
-		selectToss.remove(index);
-		option.value = 1;
-		option.text = team_one;
-		selectToss.appendChild(option);
-	}
 }
 
 function populate_team_two()
 {
 	var selectToss = document.getElementById('toss_select');
+	var option_one = document.getElementById('team_one_select');
 	var option_two = document.getElementById('team_two_select');
+	var team_one = option_one.options[option_one.selectedIndex].text;
 	var team_two = option_two.options[option_two.selectedIndex].text;
 	var option = document.createElement("option");
+	var toss = new Array();
+	var index;
+
+	for (var i = selectToss.options.length - 1 ; i > 0 ; i--)
+	{
+    	selectToss.remove(i);
+	}
+	toss.push(team_one);
+	toss.push(team_two);
+
 	
+	for(var i=0;i<toss.length;i++)
+	{
+		var option_toss = document.createElement("option");
+		option_toss.value = i+1;
+		option_toss.text = toss[i];
+		selectToss.appendChild(option_toss);
+	}
 	document.getElementById("toss_select").disabled = false;
-
-	index = check_toss_option(team_two);
-	if(index < 1)
-	{
-		option.value = 1;
-		option.text = team_two;
-		selectToss.appendChild(option);
-	}
-
-	else
-	{
-		selectToss.remove(index);
-		option.value = 1;
-		option.text = team_two;
-		selectToss.appendChild(option);
-	}
 }
 
 function check_toss_option(data)
