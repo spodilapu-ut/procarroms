@@ -15,14 +15,14 @@
     <label class="col-sm-2 col-form-label text-center">Team One</label>
     <div class="col-sm-10">
       <%= form.collection_select(:team_one_id, Team.order(:name), :id, :name,
-        {:prompt => true}, {:class => 'custom-select mb-3 select-width', :id => 'team_one_select', :onchange => 'populate_team_one()'}) %>
+        {:prompt => true}, {:class => 'custom-select mb-3 select-width', :id => 'team_one_select'}) %>
     </div>
   </div>
   <div class="d-flex justify-content-center form-group row">
     <label class="col-sm-2 col-form-label text-center">Team Two</label>
     <div class="col-sm-10">
       <%= form.collection_select(:team_two_id, Team.order(:name), :id, :name,
-        {:prompt => true}, {:class => 'custom-select mb-3 select-width', :id => 'team_two_select', :disabled => "disabled", :onchange => 'populate_team_two()'}) %>
+        {:prompt => true}, {:class => 'custom-select mb-3 select-width', :id => 'team_two_select', :disabled => "disabled"}) %>
     </div>
   </div>
   <div class="d-flex justify-content-center form-group  row">

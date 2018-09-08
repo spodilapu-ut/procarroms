@@ -30,89 +30,73 @@ $(function(){
 	});
 });
 
-function populate_team_one()
-{
-	var index;
-	var selectToss = document.getElementById("toss_select");
-	var tossDiv = document.getElementById("div-toss");
-	var option_one = document.getElementById("team_one_select");
-	var option_two = document.getElementById("team_two_select");
-	var team_one = option_one.options[option_one.selectedIndex].text;
-	var option = document.createElement("option");
-	var teams = new Array();
-
-	for (var i = option_two.options.length - 1 ; i > 0 ; i--)
+$(function(){
+	$('#team_one_select').on('change', function()
 	{
-    	option_two.remove(i);
-	}
+		var selectTeamOne = $('#team_one_select')[0];
+		var team_one = $('#team_one_select option:selected').text();
+		var size = $('#team_one_select').children('option').length;
+		var option;
 
-	for(var i=1;i<option_one.length;i++)
-	{
-		if(option_one.options[i].text != team_one)
+		$('#team_two_select').empty()
+
+		for (var i = 1; i < size; i++)
 		{
-			teams.push(option_one.options[i]);
-		}
-	}
-	for(var i=0;i<teams.length;i++)
+			if(selectTeamOne.options[i].text != team_one)
+			{
+    			option = $('<option></option>');
+     			option.val(selectTeamOne.options[i].value);
+     			option.text(selectTeamOne.options[i].text);
+     			$('#team_two_select').append(option);
+			}
+  		}
+
+  		$('#team_two_select').prop('disabled', false);
+	});
+});
+
+$(function(){
+	$('#team_two_select').on('change', function()
 	{
-		var option_team = document.createElement("option");
-		option_team.value = teams[i].value;
-		option_team.text = teams[i].text;
-		option_two.appendChild(option_team);
-	}
+		var option_team_one = $('#team_one_select')[0];
+		var option_team_two = $('#team_two_select')[0];
+		var option;
 
-	document.getElementById("team_two_select").disabled = false;
-}
+		$('#toss_select').empty();
+		
+		option = $('<option></option>');
+		option.val(option_team_one.options[option_team_one.selectedIndex].value);
+		option.text(option_team_one.options[option_team_one.selectedIndex].text);
+		$('#toss_select').append(option);
+		
+		option = $('<option></option>');
+		option.val(option_team_two.options[option_team_two.selectedIndex].value);
+		option.text(option_team_two.options[option_team_two.selectedIndex].text);
+		$('#toss_select').append(option);
+		
+		$('#toss_select').prop('disabled', false);
+	});
+});
 
-function populate_team_two()
-{
-	var selectToss = document.getElementById('toss_select');
-	var option_one = document.getElementById('team_one_select');
-	var option_two = document.getElementById('team_two_select');
-	var team_one = option_one.options[option_one.selectedIndex].text;
-	var team_two = option_two.options[option_two.selectedIndex].text;
-	var option = document.createElement("option");
-	var toss = new Array();
-	var index;
-
-	for (var i = selectToss.options.length - 1 ; i > 0 ; i--)
+$(function(){
+	$('#team_two_select').on('focus', function()
 	{
-    	selectToss.remove(i);
-	}
-	toss.push(team_one);
-	toss.push(team_two);
+		var option_team_one = $('#team_one_select')[0];
+		var option_team_two = $('#team_two_select')[0];
+		var option;
 
-	
-	for(var i=0;i<toss.length;i++)
-	{
-		var option_toss = document.createElement("option");
-		option_toss.value = i+1;
-		option_toss.text = toss[i];
-		selectToss.appendChild(option_toss);
-	}
-	document.getElementById("toss_select").disabled = false;
-}
+		$('#toss_select').empty();
+		
+		option = $('<option></option>');
+		option.val(option_team_one.options[option_team_one.selectedIndex].value);
+		option.text(option_team_one.options[option_team_one.selectedIndex].text);
+		$('#toss_select').append(option);
+		
+		option = $('<option></option>');
+		option.val(option_team_two.options[option_team_two.selectedIndex].value);
+		option.text(option_team_two.options[option_team_two.selectedIndex].text);
+		$('#toss_select').append(option);
 
-function check_toss_option(data)
-{	
-	var selectToss = document.getElementById("toss_select");
-	for(var i=0; i<selectToss.length-1; i++)
-	{
-		if(selectToss.options[i].text == data)
-		{
-			return i;
-		}
-	}
-}
-
-function check_team_two_option(data)
-{	
-	var option_two = document.getElementById("team_two_select");
-	for(var i=0; i<option_two.length; i++)
-	{
-		if(option_two.options[i].text == data)
-		{
-			return i;
-		}
-	}
-}
+		$('#toss_select').prop('disabled', false);
+	});
+});
