@@ -24,7 +24,6 @@ span.match-start-time {
 .match-winner {
     text-align: center;
     margin-left: 10px;
-    font-weight: 900;
     font-size: 1.5em;
 }
 
@@ -38,17 +37,18 @@ span.match-start-time {
 }
 
 .match-card-body {
-    font-size: 30px;
+    font-size: 18px;
+		font-weight: 800;
 }
 
 .match-card-title {
-    font-size: 40px;
+    font-size: 14px;
+		margin: 0px !important;
+		font-weight: 500;
 }
 
 .match-card-sub-title {
-    text-align: center;
-    margin-left: 10px;
-    font-size: 25px;
+    font-size: 14px;
 }
 
 .select-width{
@@ -57,12 +57,25 @@ span.match-start-time {
 
 .score-font{
     color: #000080;
-    font-size: 25px;
+    font-size: 14px;
 }
 
 .table-border{
-    font-size: 25px;
+    font-size: 14px;
     border-radius: 50px;
     border: 2px solid;
-    padding: 20px; 
+    padding: 20px;
+}
+
+.match-started{
+	font-size: 12px;
+}
+.match-status{
+	display: inline-block;
+  float: right;
+}
+.match-score{
+	font-weight: 700;
+ 	font-size: 14px;
+ 	text-align: center;
 }

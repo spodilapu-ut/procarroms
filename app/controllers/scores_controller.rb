@@ -10,10 +10,10 @@ class ScoresController < ApplicationController
     #@scores = @match.scores
     @set_scores = {}
     @sets = {}
-    
+
     @set_scores[@match.team_one.id] ||= {}
     @set_scores[@match.team_two.id] ||= {}
-    
+
     @scores = Score.where("match_id = (?)", params[:match_id]).order(id: :desc)
     set_id = @scores.length
     @scores.each do |score|
@@ -30,19 +30,19 @@ class ScoresController < ApplicationController
     puts @scores.inspect
     puts @set_scores.inspect
 
-    @set_scores.each do |team_id, set_score|
-      x =  Hash[set_score.to_a.reverse]
-      x.each do |set_id, set_score| 
+    @set_scores.each do |team_id, a|
+      x =  Hash[a.to_a.reverse]
+      x.each do |set_no, set_score|
         @sets[team_id] ||= {}
-        @sets[team_id][set_id] ||= []
-        if(set_id == 1)
-          @sets[team_id][set_id] = set_score
+        @sets[team_id][set_no] ||= []
+        if(set_no == 1)
+          @sets[team_id][set_no] = set_score
         else
-          @sets[team_id][set_id] = @sets[team_id][set_id-1] + set_score
+          @sets[team_id][set_no] = @sets[team_id][set_no-1] + set_score
         end
       end
     end
-    
+
     @total = Hash.new
     @total.store(@match.team_one.name, (Score.where("match_id = (?)", @match.id).where("team_id = (?)", @match.team_one_id).sum(:score)))
     @total.store(@match.team_two.name, (Score.where("match_id = (?)", @match.id).where("team_id = (?)", @match.team_two_id).sum(:score)))
@@ -64,7 +64,7 @@ class ScoresController < ApplicationController
       @new_set = @old_score.set + 1
     else
       @new_set = 1
-    end 
+    end
   end
 
   # GET /scores/1/edit
@@ -75,7 +75,7 @@ class ScoresController < ApplicationController
   # POST /scores.json
   def create
     @total = Hash.new
-    @total.store(@match.team_one.id, Score.where("match_id = (?)", @match.id).where("team_id = (?)", @match.team_one.id).sum(:score)) 
+    @total.store(@match.team_one.id, Score.where("match_id = (?)", @match.id).where("team_id = (?)", @match.team_one.id).sum(:score))
     @total.store(@match.team_two.id, Score.where("match_id = (?)", @match.id).where("team_id = (?)", @match.team_two.id).sum(:score))
 
     @score = @match.scores.build(score_params)
@@ -128,7 +128,7 @@ class ScoresController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_score
-      @score = @match.scores.find(params[:id])     
+      @score = @match.scores.find(params[:id])
     end
 
     def set_match

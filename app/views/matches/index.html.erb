@@ -1,35 +1,18 @@
 <div class="container-fluid">
   <div class="row">
     <% @matches.each do |match| %>
+    <% total_team_one = Score.where("match_id = (?)", match.id).where("team_id = (?)", match.team_one.id).sum(:score) %>
+    <% total_team_two = Score.where("match_id = (?)", match.id).where("team_id = (?)", match.team_two.id).sum(:score) %>
       <div class="col-md-4 col-sm-6 my-4">
         <div class="card border border-dark">
           <div class="card-body card">
-            <div class="card-title text-center">
-              <div class="card-title font-weight-bold match-card-title">
-                Match <%= match.id %>
-              </div>
-              <div class="card-title font-weight-bold match-card-body">
-                <%= match.team_one.name %> Vs <%= match.team_two.name %>
-              </div>
-              <div class="card-title font-weight-bold match-card-body">
-                <!--<%= match.team_one.name %> Vs <%= match.team_two.name %>-->
-              </div>
-              <div class="card-title font-italic font-weight-bold">
+            <div class="card-title">
+              <div class="font-italic match-started">
                 <%= match.created_at.strftime("%d-%B-%Y %I:%M %p") %>
               </div>
-              <div class="card-title font-italic font-weight-bold match-card-sub-title">
-                Toss: <%= match.toss.name %>
-              </div>
-              <div class="card-title">
-                <%= link_to 'View Detailed Score', match_scores_path(match), class: "btn btn-success btn-block" %>
-              </div>
-              <div class="card-title font-weight-bold font-italic score-font">
-                <% total_team_one = Score.where("match_id = (?)", match.id).where("team_id = (?)", match.team_one.id).sum(:score) %>
-                <% total_team_two = Score.where("match_id = (?)", match.id).where("team_id = (?)", match.team_two.id).sum(:score) %>
-                <div class="text-center">
-                  <%= match.team_one.name %> <%= total_team_one %> - <%= match.team_two.name %> <%= total_team_two %>
-                </div>
-                <div class="text-center">   
+              <div class="card-title match-card-title">
+                Match <%= match.id %>
+                <div class="match-status">
                   <% if total_team_one == 29 %>
                     Winner: <%= match.team_one.name %>
                   <% elsif total_team_two == 29 %>
@@ -38,6 +21,20 @@
                     Match in Progress
                   <% end %>
                 </div>
+              </div>
+              <div class="card-title match-card-body match-teams">
+                <%= match.team_one.name %> Vs <%= match.team_two.name %>
+              </div>
+              <div class="font-italic match-card-sub-title">
+                <div class="match-score">
+                  <%= match.team_one.name %> <%= total_team_one %> - <%= match.team_two.name %> <%= total_team_two %>
+                </div>
+              </div>
+              <div class="card-title font-italic score-font">
+
+              </div>
+              <div class="card-title">
+                <%= link_to 'View Detailed Score', match_scores_path(match), class: "btn btn-success btn-block" %>
               </div>
             </div>
           </div>

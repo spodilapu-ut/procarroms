@@ -50,7 +50,7 @@ $(function(){
      			$('#team_two_select').append(option);
 			}
   		}
-
+      console.log('is it here');
   		$('#team_two_select').prop('disabled', false);
 	});
 });
@@ -63,17 +63,17 @@ $(function(){
 		var option;
 
 		$('#toss_select').empty();
-		
+
 		option = $('<option></option>');
 		option.val(option_team_one.options[option_team_one.selectedIndex].value);
 		option.text(option_team_one.options[option_team_one.selectedIndex].text);
 		$('#toss_select').append(option);
-		
+
 		option = $('<option></option>');
 		option.val(option_team_two.options[option_team_two.selectedIndex].value);
 		option.text(option_team_two.options[option_team_two.selectedIndex].text);
 		$('#toss_select').append(option);
-		
+
 		$('#toss_select').prop('disabled', false);
 	});
 });
@@ -86,12 +86,12 @@ $(function(){
 		var option;
 
 		$('#toss_select').empty();
-		
+
 		option = $('<option></option>');
 		option.val(option_team_one.options[option_team_one.selectedIndex].value);
 		option.text(option_team_one.options[option_team_one.selectedIndex].text);
 		$('#toss_select').append(option);
-		
+
 		option = $('<option></option>');
 		option.val(option_team_two.options[option_team_two.selectedIndex].value);
 		option.text(option_team_two.options[option_team_two.selectedIndex].text);
