@@ -1,4 +1,7 @@
 <%= form_for(@team) do |form| %>
+<div class="alert alert-info" role="alert" id="errorDiv" hidden="true">
+    Error Information!
+</div>
   <% if @team.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(team.errors.count, "error") %> prohibited this team from being saved:</h2>

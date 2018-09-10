@@ -1,4 +1,7 @@
 <%= form_for(@user) do |form| %>
+  <div class="alert alert-info" role="alert" id="errorDiv" hidden="true">
+    Error Information!
+</div>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -14,21 +17,21 @@
   <div class="d-flex justify-content-center" class="form-group row">
     <label class="col-sm-2 col-form-label">Name</label>
     <div class="col-sm-8">
-      <%= form.text_field :name %>
+      <%= form.text_field :name, :id => 'name'%>
     </div>
   </div>
 
   <div class="d-flex justify-content-center" class="form-group row">
     <label class="col-sm-2 col-form-label">Age</label>
     <div class="col-sm-8">
-      <%= form.number_field :age %>
+      <%= form.number_field :age, :id => 'age' %>
     </div>
   </div>
 
   <div class="d-flex justify-content-center" class="form-group row">
     <label class="col-sm-2 col-form-label">Gender</label>
     <div class="col-sm-8">
-      <%= form.select :gender, [['Male', 1], ['Female', 2]] %>
+      <%= form.select :gender, [['Male', 1], ['Female', 2]], { :prompt=>true }, {:class=>'custom-select mb-3', :id => 'gender_select' }  %>
     </div>
   </div>
 <% end %>
