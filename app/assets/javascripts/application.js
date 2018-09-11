@@ -18,7 +18,6 @@
 //= require bootstrap
 //= require_tree .
 
-
 $(function(){
 	$('#newTeamModal').on('shown.bs.modal', function () {
   		if($('#team_name').val().length > 0)
@@ -28,7 +27,6 @@ $(function(){
   		}
 	});
 });
-
 
 $(function(){
 	$('#newUserModal').on('shown.bs.modal', function () {
@@ -49,25 +47,25 @@ $(function(){
 
 		var selectGender = $('#gender_select')[0];
 		var gender = selectGender.options[selectGender.selectedIndex].value;
-	  	if($('#name').val().length == 0 && $('#age').val().length == 0 && gender == 0)
+	  	if(($('#name').val().length == 0) && ($('#age').val().length == 0 && gender == 0))
 	  	{
 	  		$('#errorDiv').attr("hidden", false)
 	  		$('#errorDiv').text('Name, Age and Gender cannot be blank');
 	  	}
 	  	
-	  	else if($('#name').val().length == 0 && $('#age').val().length == 0)
+	  	else if(($('#name').val().length == 0) && ($('#age').val().length == 0))
 	  	{
 	  		$('#errorDiv').attr("hidden", false)
 	  		$('#errorDiv').text('Name and Age cannot be blank');
 	  	}
 
-	  	else if($('#name').val().length == 0 && gender == 0)
+	  	else if(($('#name').val().length == 0) && (gender == 0))
 	  	{
 	  		$('#errorDiv').attr("hidden", false)
 	  		$('#errorDiv').text('Name and Gender cannot be blank');
 	  	}
 
-	  	else if($('#age').val().length == 0 && gender == 0)
+	  	else if(($('#age').val().length == 0) && (gender == 0))
 	  	{
 	  		$('#errorDiv').attr("hidden", false)
 	  		$('#errorDiv').text('Age and Gender cannot be blank');
@@ -79,7 +77,7 @@ $(function(){
 	  		$('#errorDiv').text('Name cannot be blank');
 	  	}
 
-	  	else if ( ($('#name').val().length > 0) && (!($('#name').val().match(name_regex))) )
+	  	else if (($('#name').val().length > 0) && (!($('#name').val().match(name_regex))))
 	  	{
 	  		$('#errorDiv').attr("hidden", false)
 	  		$('#errorDiv').text('Name should contain only characters');
@@ -135,7 +133,7 @@ $(function(){
 		var option;
 
 		$('#team_two_select').empty()
-		$('#team_two_select').prepend('<option value="">Please Select</option>');
+		$('#team_two_select').prepend('<option value="">Select Team Two</option>');
 
 		for (var i = 1; i < size; i++)
 		{
@@ -158,7 +156,7 @@ $(function(){
 		var option_team_two = $('#team_two_select')[0];
 
 		$('#toss_select').empty();
-		$('#toss_select').prepend('<option value="">Please Select</option>');
+		$('#toss_select').prepend('<option value="">Select a Team</option>');
 
 		var optionTeamOne = $('<option></option>');
 		optionTeamOne.val(option_team_one.options[option_team_one.selectedIndex].value);
@@ -187,7 +185,7 @@ $(function(){
 		var option_team_two = $('#team_two_select')[0];
 		
 		$('#toss_select').empty();
-		$('#toss_select').prepend('<option value="">Please Select</option>');
+		$('#toss_select').prepend('<option value="">Select a Team</option>');
 
 		var optionTeamOne = $('<option></option>');
 		optionTeamOne.val(option_team_one.options[option_team_one.selectedIndex].value);

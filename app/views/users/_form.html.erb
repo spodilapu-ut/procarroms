@@ -4,7 +4,7 @@
 </div>
   <% if @user.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <h3><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h3>
 
       <ul>
       <% user.errors.full_messages.each do |message| %>
@@ -14,24 +14,24 @@
     </div>
   <% end %>
 
-  <div class="d-flex justify-content-center" class="form-group row">
+  <div class="d-flex justify-content-center form-group row">
     <label class="col-sm-2 col-form-label">Name</label>
     <div class="col-sm-8">
       <%= form.text_field :name, :id => 'name'%>
     </div>
-  </div>
+  </div><br/> 
 
-  <div class="d-flex justify-content-center" class="form-group row">
-    <label class="col-sm-2 col-form-label">Age</label>
-    <div class="col-sm-8">
+  <div class="d-flex justify-content-center form-group row">
+    <label class="col-sm-2 col-xs-2 col-form-label">Age</label>
+    <div class="col-sm-8 col-xs-2">
       <%= form.number_field :age, :id => 'age' %>
     </div>
-  </div>
+  </div><br/>
 
-  <div class="d-flex justify-content-center" class="form-group row">
+  <div class="d-flex justify-content-center form-group row">
     <label class="col-sm-2 col-form-label">Gender</label>
     <div class="col-sm-8">
-      <%= form.select :gender, [['Male', 1], ['Female', 2]], { :prompt=>true }, {:class=>'custom-select mb-3', :id => 'gender_select' }  %>
+      <%= form.select :gender, [['Male', 1], ['Female', 2]], { :prompt=> "Select Gender" }, {:class=>'custom-select mb-3', :id => 'gender_select' }  %>
     </div>
   </div>
 <% end %>

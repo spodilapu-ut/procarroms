@@ -1,10 +1,10 @@
 <%= form_for(@team) do |form| %>
-<div class="alert alert-info" role="alert" id="errorDiv" hidden="true">
+  <div class="alert alert-info" role="alert" id="errorDiv" hidden="true">
     Error Information!
-</div>
+  </div>
   <% if @team.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(team.errors.count, "error") %> prohibited this team from being saved:</h2>
+      <h3><%= pluralize(team.errors.count, "error") %> prohibited this team from being saved:</h3>
 
       <ul>
       <% team.errors.full_messages.each do |message| %>
@@ -14,7 +14,7 @@
     </div>
   <% end %>
 
-  <div class="d-flex justify-content-center" class="form-group row">
+  <div class="d-flex justify-content-center form-group">
     <label class="col-sm-4 col-form-label">Team Name</label>
     <div class="col-sm-8">
       <%= form.text_field :name %>

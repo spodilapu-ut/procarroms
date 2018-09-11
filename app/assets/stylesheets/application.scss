@@ -51,31 +51,42 @@ span.match-start-time {
     font-size: 14px;
 }
 
-.select-width{
-    width: 25%;
-}
-
 .score-font{
     color: #000080;
     font-size: 14px;
 }
 
-.table-border{
+.table-border
+{
     font-size: 14px;
     border-radius: 50px;
     border: 2px solid;
     padding: 20px;
 }
 
-.match-started{
+.match-started
+{
 	font-size: 12px;
 }
-.match-status{
+
+.match-status
+{
 	display: inline-block;
   float: right;
 }
-.match-score{
+
+.match-score
+{
 	font-weight: 700;
  	font-size: 14px;
  	text-align: center;
+}
+
+.custom-select
+{
+    width: 50%;
+}
+
+.team-card{
+    width: 70%; 
 }

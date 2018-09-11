@@ -11,47 +11,23 @@
 
 <div class="container-fluid">
   <div class="row">
-    <%@users.each do |user| %>
-      <div class="col-6 col-md-4 col-sm-6 my-4">
-        <table class="table-border col font-weight-bold">
-          <tr class="text-center">
-            <td class="align-middle"> User Name: <%= user.name %></td>
-          </tr>
-          <tr class="text-center">
-            <td> Age: <%= user.age %></td>
-          </tr>
-          <tr class="text-center font-italic">
-            <% if user.gender == 1 %>
-              <td> Gender: Male </td>
-            <% elsif user.gender == 2 %>
-              <td> Gender: Female </td>
-            <% end %>
-          </tr>
-        </table>
-      </div>
-    <% end %>
-  </div>
-</div>
-
-<!--<div class="container-fluid">
-  <div class="row">
     <% @users.each do |user| %>
       <div class=" col-6 col-md-4 col-sm-6 my-4">
         <div class="card border border-dark">
-          <img src="/assets/user1.jpg" alt="User Image" class="rounded float-left img-thumbnail">
-          <div class="card-body ">
-            <div class="card-title text-center font-weight-bold h4">
-              User Name: <%= user.name %>
+          <!--<img src="/assets/user1.jpg" alt="User Image" class="rounded float-left img-thumbnail">-->
+          <div class="card-body">
+            <div class="card-title text-center font-weight-bold h5">
+              Name: <%= user.name %>
             </div>
-            <div class="card-text text-center font-weight-bold h4">
+            <div class="card-text text-center font-weight-bold h5">
               Age: <%= user.age %>
             </div>
             <% if user.gender == 1 %>
-              <div class="card-text text-center font-weight-bold font-italic h4">
+              <div class="card-text text-center font-weight-bold font-italic h5">
                 Gender: Male
               </div>
             <% elsif %>
-              <div class="card-text text-center font-weight-bold font-italic h4">
+              <div class="card-text text-center font-weight-bold font-italic h5">
                 Gender: Female
               </div>
             <% end %>
@@ -60,7 +36,7 @@
       </div>
     <% end %>
   </div>
-</div>-->
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="newUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

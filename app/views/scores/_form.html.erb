@@ -1,7 +1,7 @@
 <%= form_for([@match, @score]) do |form| %>
   <% if @score.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(score.errors.count, "error") %> prohibited this score from being saved:</h2>
+      <h4><%= pluralize(score.errors.count, "error") %> prohibited this score from being saved:</h4>
 
       <ul>
       <% score.errors.full_messages.each do |message| %>
@@ -11,25 +11,25 @@
     </div>
   <% end %>
 
-<div class="d-flex justify-content-center" class="form-group row">
+<div class="d-flex justify-content-center form-group row">
     <label class="col-sm-2 col-form-label">Match ID</label>
     <div class="col-sm-8">
       <%= form.text_field :match_id, :value => @match.id, readonly: true %>
     </div>
   </div>
-  <div class="d-flex justify-content-center" class="form-group row">
+  <div class="d-flex justify-content-center form-group row">
     <label class="col-sm-2 col-form-label">Set</label>
     <div class="col-sm-8">
       <%= form.text_field :set, :value => @new_set, readonly: true %>
     </div>
   </div>
-  <div class="d-flex justify-content-center" class="form-group row">
+  <div class="d-flex justify-content-center form-group row">
     <label class="col-sm-2 col-form-label">Score</label>
     <div class="col-sm-8">
       <%= form.number_field :score, min: 1, max: 14, :id => 'score_field', :required => true %>
     </div>
   </div>
-  <div class="d-flex justify-content-center" class="form-group row">
+  <div class="d-flex justify-content-center form-group row">
     <label class="col-sm-2 col-form-label">Team</label>
     <div class="col-sm-8">
       <%= form.radio_button(:team_id, @match.team_one.id, :required => true) %>
@@ -38,7 +38,7 @@
       <%= form.label :team, @match.team_two.name, :value => @match.team_two.name %>
     </div>
   </div><br/>
-  <div class="d-flex justify-content-center" class="form-group row">
+  <div class="d-flex justify-content-center form-group row">
     <div class="col-sm-10">
       <%= form.submit class: "btn btn-sm btn-success" %>
       <%= link_to 'Back', match_scores_path, class: "btn btn-sm btn-secondary" %>
